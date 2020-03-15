@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<h1>Tasks</h1>
+<nav>
+    <ul>
+        <li><a href="/tasks">View all Tasks</a></li>
+        <li><a href="/tasks/new">Add Task</a></li>
+    </ul>
+</nav>
+<div th:if="${!tasks.isEmpty()}">
+    <table>
+        <tr th:each="task: ${tasks}">
+            <td>
+                <p>Titel: <span th:text="${task.title}"></span></p>
+                <p>Description: <span th:text="${task.description}"></span></p>
+                <p> Due:
+                <span th:text="${task.getDateString()}"></span>
+                </p>
+                <a th:href="@{/tasks/__${task.getUuid()}__}">Details</a>
+                <a th:href="@{/tasks/edit/__${task.getUuid()}__}">Edit task</a>
+                <a th:href="@{/tasks/__${task.getUuid()}__/sub/create}">Add subtask</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:if="${tasks.isEmpty()}">
+    <p>No tasks left to do.</p>
+</div>
+</body>
+</html>

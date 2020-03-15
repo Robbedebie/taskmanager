@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add subtask</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+<form action="/addSubtask" method="post" th:object="${subtask}" novalidate>
+    <h1>Add Subtask to <span th:text="${task.title}"></span></h1>
+    <div class="formcontainer">
+        <hr/>
+        <div class="container">
+            <label for="title"><strong>Title</strong></label>
+            <p th:errors="*{title}"></p>
+            <input type="text" th:field="*{title}" name="title" id="title" required>
+
+            <label for="description"><strong>Description</strong></label>
+            <p th:errors="*{description}"></p>
+            <input type="text" th:field="*{description}" id="description" name="description" required>
+            <input type="hidden" th:value="${task.uuid}" name="id">
+
+        </div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+</body>
+</html>
