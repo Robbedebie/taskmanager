@@ -16,6 +16,11 @@ public class Subtask {
     String description;
 
     public Subtask(){}
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Subtask(String title, String description) {
         this.title = title;
         this.description = description;

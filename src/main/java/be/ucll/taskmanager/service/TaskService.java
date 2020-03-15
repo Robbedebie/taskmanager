@@ -1,5 +1,6 @@
 package be.ucll.taskmanager.service;
 
+import be.ucll.taskmanager.DTO.SubtaskDTO;
 import be.ucll.taskmanager.DTO.TaskDTO;
 
 import java.time.LocalDateTime;
@@ -8,8 +9,9 @@ import java.util.UUID;
 
 public interface TaskService {
     List<TaskDTO> getAllTasks();
-    void addTask(Task task);
+    void addTask(TaskDTO taskDTO);
     Task getTask(UUID id);
-    void editTask(UUID uuid, String title, String description, LocalDateTime localDateTime);
-    void addSubtask(UUID uuid, Subtask subtask);
+    TaskDTO getTaskDTO(UUID id);
+    void editTask(TaskDTO dto);
+    void addSubtask(UUID uuid, SubtaskDTO subtask);
 }

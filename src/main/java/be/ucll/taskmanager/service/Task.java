@@ -1,5 +1,6 @@
 package be.ucll.taskmanager.service;
 
+import be.ucll.taskmanager.DTO.TaskDTO;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
@@ -127,5 +128,10 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", date=" + date +
                 '}';
+    }
+    public void editTaskParametersUsingTaskDTO(TaskDTO taskDTO){
+        setDate(taskDTO.getDate());
+        setDescription(taskDTO.getDescription());
+        setTitle(taskDTO.getTitle());
     }
 }

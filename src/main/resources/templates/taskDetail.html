@@ -15,8 +15,7 @@
             <td>
                 <p>Title: <span th:text="${task.title}"></span></p>
                 <p>Description: <span th:text="${task.description}"></span></p>
-                <p>Due date: <span th:text="${task.getDateString()}">  </span> <span
-                        th:text="${task.getTimeString()}"></span></p>
+                <p>Due date: <span th:text="${task.getDateString()}"> </p>
                 <div th:if="${!task.subtasks.isEmpty()}">
                     <table>
                         <h4>Subtasks:</h4>

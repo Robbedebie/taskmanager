@@ -5,7 +5,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
 public class SubtaskDTO {
-    public class Subtask {
         @Id
         @GeneratedValue
         private long id;
@@ -37,5 +36,4 @@ public class SubtaskDTO {
         public void setDescription(String description) {
             this.description = description;
         }
-    }
 }
