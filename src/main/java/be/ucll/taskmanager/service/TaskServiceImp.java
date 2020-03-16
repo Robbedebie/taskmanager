@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -23,8 +24,6 @@ public class TaskServiceImp implements TaskService{
         this.repository = repository;
         this.subtaskRepository = subtaskRepository;
     }
-
-    //TODO maak addtask(TaskDTO task)
     @Override
     public void addTask(TaskDTO taskDTO) {
         String title = taskDTO.getTitle();
@@ -50,6 +49,7 @@ public class TaskServiceImp implements TaskService{
             dto.setDescription(t.getDescription());
             dto.setTitle(t.getTitle());
             dto.setUuid(t.getUuid());
+            dto.setSubtasks(t.getsubtasksDTO());
             return dto;
         }
         else {
@@ -80,13 +80,16 @@ public class TaskServiceImp implements TaskService{
         repository.save(task);
     }
     public List<TaskDTO> getAllTasks(){
-        return repository.findAll().stream().map( t -> {
+        List<TaskDTO> dtos = new ArrayList<>();
+        for(Task t: repository.findAll()){
             TaskDTO dto = new TaskDTO();
-            dto.setDate(t.getdate());
-            dto.setDescription(t.getDescription());
             dto.setTitle(t.getTitle());
+            dto.setDescription(t.getDescription());
+            dto.setSubtasks(t.getsubtasksDTO());
             dto.setUuid(t.getUuid());
-            return dto;
-                }).collect(Collectors.toList());
+            dto.setDate(t.getdate());
+            dtos.add(dto);
+        }
+        return dtos;
     }
 }

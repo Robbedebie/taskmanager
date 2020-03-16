@@ -1,5 +1,6 @@
 package be.ucll.taskmanager.service;
 
+import be.ucll.taskmanager.DTO.SubtaskDTO;
 import be.ucll.taskmanager.DTO.TaskDTO;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -133,5 +134,16 @@ public class Task {
         setDate(taskDTO.getDate());
         setDescription(taskDTO.getDescription());
         setTitle(taskDTO.getTitle());
+    }
+    public List<SubtaskDTO> getsubtasksDTO(){
+        List<SubtaskDTO> dtos= new ArrayList<>();
+        for(Subtask s: subtasks){
+            SubtaskDTO dto = new SubtaskDTO();
+            dto.setId(s.getId());
+            dto.setTitle(s.getTitle());
+            dto.setDescription(s.getDescription());
+            dtos.add(dto);
+        }
+        return dtos;
     }
 }

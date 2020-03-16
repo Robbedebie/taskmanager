@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titletext)">
+    <meta charset="UTF-8">
+    <title th:text="${titletext}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+<header th:fragment="header(title)">
+    <h1><span th:text="${title}"></span></h1>
+    <nav>
+        <ul>
+            <li><a href="/tasks">View all Tasks</a></li>
+            <li><a href="/tasks/new">Add Task</a></li>
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

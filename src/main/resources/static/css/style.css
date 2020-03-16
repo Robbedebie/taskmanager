@@ -13,6 +13,9 @@ html, body {
     font-size: 15px;
 
 }
+nav {
+    margin-left: 11%;
+}
 form {
     border: 5px solid #f1f1f1;
 }
@@ -24,33 +27,8 @@ input[type=text], input[type=datetime-local] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-/*nav ul {*/
-/*    list-style: none;*/
-/*    background-color: green;*/
-/*    box-sizing: border-box;*/
-/*    margin-bottom: 1em;*/
-/*}*/
-
-/*nav ul li {*/
-/*    height: 2em;*/
-/*    font-size: 150%;*/
-/*    font-weight: bold;*/
-/*    padding: 10px;*/
-/*    width: 100%;*/
-/*    box-sizing: border-box;*/
-/*}*/
-
-/*nav ul li a{*/
-/*    color: #303d11;*/
-/*    text-decoration: none;*/
-/*    display: block;*/
-/*}*/
-
-/*nav ul li#actual {*/
-/*    background-color: #f3dc04;*/
-/*}*/
 nav ul {
-    margin-left: 18%;
+    margin-left: 0;
 }
 
 
@@ -70,14 +48,14 @@ button {
     width: 100%;
 }
 h1 {
-    text-align:center;
-    fone-size:18;
+    text-align:left;
+    margin-left: 12%;
 }
 button:hover {
     opacity: 0.8;
 }
 div {
-    margin-left: 20%;
+    margin-left: 12%;
 }
 .formcontainer {
     text-align: left;

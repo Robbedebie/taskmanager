@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,9 +22,15 @@ public class TaskDTO {
     private String title;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime date;
-    @OneToMany
     private List<SubtaskDTO> subtasks;
 
+    public TaskDTO() {
+        this.subtasks = new ArrayList<>();
+    }
+
+    public void setSubtasks(List<SubtaskDTO> subtasks) {
+        this.subtasks = subtasks;
+    }
     public List<SubtaskDTO> getSubtasks() {
         return subtasks;
     }

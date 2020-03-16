@@ -15,6 +15,10 @@ public class Subtask {
     @NotEmpty
     String description;
 
+    public long getId() {
+        return id;
+    }
+
     public Subtask(){}
 
     public void setId(long id) {

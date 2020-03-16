@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>BDD</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-</head>
+<head th:insert="_fragments.html :: head('Add Task')"></head>
 <body>
-<form action="/addTask" method="post" th:object="${task}" novalidate>
-    <h1>Add task</h1>
+<header th:replace="_fragments.html :: header('Add task') "></header>
+<form action="/tasks/addTask" method="post" th:object="${task}" novalidate>
     <div class="formcontainer">
-        <hr/>
         <div class="container">
             <label for="title"><strong>Title</strong></label>
             <p th:errors="*{title}"></p>
@@ -23,9 +17,9 @@
             <label for="date"><strong>Due date:</strong></label>
             <p th:errors="*{date}"></p>
             <input type="datetime-local" id="date" name="date" th:field="*{date}">
-
+            <button type="submit">Add Task</button>
         </div>
-        <button type="submit">Login</button>
+
     </div>
 </form>
 </body>

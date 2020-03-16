@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Task Detail</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+<head th:insert="_fragments.html :: head('Task Detail')"></head>
 <body>
-<h1>Task Detail</h1>
+<header th:replace="_fragments.html :: header('Task Detail') "></header>
 <div th:if="${task != null}">
     <table>
         <tr>
             <td>
                 <p>Title: <span th:text="${task.title}"></span></p>
                 <p>Description: <span th:text="${task.description}"></span></p>
-                <p>Due date: <span th:text="${task.getDateString()}"> </p>
-                <div th:if="${!task.subtasks.isEmpty()}">
+                <p>Due date: <span th:text="${task.getDateString()}"></span></p>
+                <div th:if="${!task.getSubtasks().isEmpty()}">
                     <table>
                         <h4>Subtasks:</h4>
                         <tr th:each="subtask: ${task.getSubtasks()}">
                             <td>
-                                <p>Title: <span th:text="${subtask.title}"></span></p>
-                                <p>Description: <span th:text="${subtask.description}"></span></p>
+                                <p>Title: <span th:text="${subtask.getTitle()}"></span></p>
+                                <p>Description: <span th:text="${subtask.getDescription()}"></span></p>
                             </td>
                         </tr>
                     </table>

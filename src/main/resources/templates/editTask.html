@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>BDD</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-</head>
+<head th:insert="_fragments.html :: head('Edit Task')"></head>
 <body>
-<form action="/editTask" method="post" th:object="${task}" novalidate>
-    <h1>Edit task</h1>
+<header th:replace="_fragments.html :: header('Edit Task')"></header>
+<form action="/tasks/editTask" method="post" th:object="${task}" novalidate>
     <div class="formcontainer">
         <hr/>
         <div class="container">

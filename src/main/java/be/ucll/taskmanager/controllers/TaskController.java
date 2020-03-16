@@ -15,27 +15,23 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/tasks")
 public class TaskController {
-    //DTO GEBRUIKEN IN CONTROLLER
     @Autowired
     private TaskServiceImp service;
 
-    @GetMapping("/tasks")
+    @GetMapping
     public String tasksPage(Model model){
         model.addAttribute("tasks", service.getAllTasks());
         return "tasks";
     }
-    @GetMapping("/")
-    public String indexPagina(Model model){
-        return "redirect:/tasks";
-    }
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/{id}")
     public String getTaskDTO(Model model, @PathVariable("id") String id){
         TaskDTO taskDTO = service.getTaskDTO(UUID.fromString(id));
         model.addAttribute("task",taskDTO);
         return "taskDetail";
     }
-    @GetMapping("/tasks/new")
+    @GetMapping("/new")
     public String addTaskPage(Model model){
         model.addAttribute("task", new TaskDTO());
         return "addTask";
@@ -49,7 +45,7 @@ public class TaskController {
         return "redirect:/tasks";
     }
     //What happens when you click on "EDIT TASK"
-    @GetMapping("/tasks/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") String id){
         TaskDTO taskDTO = service.getTaskDTO(UUID.fromString(id));
         model.addAttribute("task", taskDTO);
@@ -64,7 +60,7 @@ public class TaskController {
         service.editTask(taskDTO);
         return "redirect:/tasks/" + taskDTO.getUuid();
     }
-    @GetMapping("/tasks/{id}/sub/create")
+    @GetMapping("/{id}/sub/create")
     public String pageCreateSubtask(Model model, @PathVariable("id") String id){
         Subtask subtask = new Subtask();
         Task mainTask = service.getTask(UUID.fromString(id));
@@ -73,10 +69,10 @@ public class TaskController {
         return "addSubtask";
     }
     @PostMapping("/addSubtask")
-    public String addSubtask(Model model, @RequestParam(value="id") String id, @ModelAttribute @Valid SubtaskDTO subtask, BindingResult bindingResult){
+    public String addSubtask(Model model, @RequestParam(value="idMainTask") String id, @ModelAttribute @Valid SubtaskDTO subtask, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             model.addAttribute("subtask", subtask);
-            Task mainTask = service.getTask(UUID.fromString(id));
+            TaskDTO mainTask = service.getTaskDTO(UUID.fromString(id));
             model.addAttribute("task", mainTask);
             return "addSubtask";
         }
