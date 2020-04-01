@@ -63,7 +63,7 @@ public class TaskController {
     @GetMapping("/{id}/sub/create")
     public String pageCreateSubtask(Model model, @PathVariable("id") String id){
         Subtask subtask = new Subtask();
-        Task mainTask = service.getTask(UUID.fromString(id));
+        TaskDTO mainTask = service.getTaskDTO(UUID.fromString(id));
         model.addAttribute("subtask", subtask);
         model.addAttribute("task",mainTask);
         return "addSubtask";

@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface TaskService {
     List<TaskDTO> getAllTasks();
     void addTask(TaskDTO taskDTO);
-    Task getTask(UUID id);
+//    Task getTask(UUID id);
     TaskDTO getTaskDTO(UUID id);
     void editTask(TaskDTO dto);
     void addSubtask(UUID uuid, SubtaskDTO subtask);

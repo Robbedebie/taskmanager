@@ -32,8 +32,7 @@ public class TaskServiceImp implements TaskService{
         Task task = new Task(description, date, title);
         repository.save(task);
     }
-    @Override
-    public Task getTask(UUID id){
+    private Task getTask(UUID id){
         if(repository.findById(id).isPresent()){
             return repository.findById(id).get();
         }
