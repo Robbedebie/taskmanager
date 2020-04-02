@@ -33,6 +33,7 @@ public class TaskServiceImpTest {
         assertFalse(tasks.isEmpty());
         assertEquals(1,tasks.size());
         TaskDTO taak = tasks.get(0);
-        assertNotNull(tasks);
+        assertNotNull(taak);
+        assertEquals("test", taskDTO.getTitle());
     }
 }
