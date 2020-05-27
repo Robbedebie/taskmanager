@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="_fragments.html :: head('Task Detail')"></head>
+<head th:insert="_fragments.html :: head(#{page_title_task_detail})"></head>
 <body>
-<header th:replace="_fragments.html :: header('Task Detail') "></header>
+<header th:replace="_fragments.html :: header(#{page_title_task_detail})"></header>
+
 <div th:if="${task != null}">
     <table>
         <tr>
             <td>
-                <p>Title: <span th:text="${task.title}"></span></p>
-                <p>Description: <span th:text="${task.description}"></span></p>
-                <p>Due date: <span th:text="${task.getDateString()}"></span></p>
+                <p><span th:text="#{Title}"></span> <span th:text="${task.title}"></span></p>
+                <p><span th:text="#{Description}"> </span><span th:text="${task.description}"></span></p>
+                <p><span th:text="#{due_date}"> </span><span th:text="${task.getDateString()}"></span></p>
                 <div th:if="${!task.getSubtasks().isEmpty()}">
                     <table>
-                        <h4>Subtasks:</h4>
+                        <h4 th:text="#{Subtasks}"></h4>
                         <tr th:each="subtask: ${task.getSubtasks()}">
                             <td>
-                                <p>Title: <span th:text="${subtask.getTitle()}"></span></p>
-                                <p>Description: <span th:text="${subtask.getDescription()}"></span></p>
+                                <p th:text="#{Title}"><span th:text="${subtask.getTitle()}"></span></p>
+                                <p th:text="#{Description}"><span th:text="${subtask.getDescription()}"></span></p>
                             </td>
                         </tr>
                     </table>
                 </div>
-                <p><a th:href="@{/tasks/__${task.getUuid()}__/sub/create}">Create subtask</a></p>
+                <p><a th:href="@{/tasks/__${task.getUuid()}__/sub/create}" th:text="#{Create_subtask}"></a></p>
         </tr>
     </table>
 </div>

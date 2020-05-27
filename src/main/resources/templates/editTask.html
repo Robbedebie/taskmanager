@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="_fragments.html :: head('Edit Task')"></head>
+<head th:insert="_fragments.html :: head(#{page_title_edit_task})"></head>
 <body>
-<header th:replace="_fragments.html :: header('Edit Task')"></header>
+<header th:replace="_fragments.html :: header(#{page_title_edit_task})"></header>
+
 <form action="/tasks/editTask" method="post" th:object="${task}" novalidate>
     <div class="formcontainer">
         <hr/>
         <div class="container">
-            <label for="title"><strong>Title</strong></label>
+            <label for="title"><strong th:text="#{Title}"></strong></label>
             <p th:errors="*{title}"></p>
             <input type="text" th:field="*{title}" name="title" id="title" required>
 
-            <label for="description"><strong>Description</strong></label>
+            <label for="description"><strong th:text="#{Description}"></strong></label>
             <p th:errors="*{description}"></p>
             <input type="text" th:field="*{description}" id="description" name="description" required>
 
-            <label for="date"><strong>Due date:</strong></label>
+            <label for="date"><strong th:text="#{due_date}">Due date:</strong></label>
             <p th:errors="*{date}"></p>
             <input type="datetime-local" id="date" name="date" th:field="*{date}">
             <input type="hidden" th:field="*{uuid}" name="id">

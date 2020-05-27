@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="_fragments.html :: head('All tasks')"></head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="_fragments.html :: head(#{page_title_all_tasks})"></head>
 <body>
-<header th:replace="_fragments.html :: header('All tasks')"></header>
+<header th:replace="_fragments.html :: header(#{page_title_all_tasks})"></header>
 <div th:if="${!tasks.isEmpty()}">
     <table>
         <tr th:each="task: ${tasks}">
             <td>
-                <p>Titel: <span th:text="${task.title}"></span></p>
-                <p>Description: <span th:text="${task.description}"></span></p>
-                <p> Due:
+                <p><span th:text="#{Title}"></span>:<span th:text="${task.title}"></span></p>
+                <p><span th:text="#{Description}"></span>:<span th:text="${task.description}"></span></p>
+                <p><span th:text="#{Due}"></span>:
                 <span th:text="${task.getDateString()}"></span>
                 </p>
                 <a th:href="@{/tasks/__${task.getUuid()}__}">Details</a>
-                <a th:href="@{/tasks/edit/__${task.getUuid()}__}">Edit task</a>
-                <a th:href="@{/tasks/__${task.getUuid()}__/sub/create}">Add subtask</a>
+                <a th:href="@{/tasks/edit/__${task.getUuid()}__}" th:text="#{Edit_task}"></a>
+                <a th:href="@{/tasks/__${task.getUuid()}__/sub/create}" th:text="#{add_subtask}"></a>
             </td>
         </tr>
     </table>
 </div>
 <div th:if="${tasks.isEmpty()}">
-    <p>No tasks left to do.</p>
+    <p th:text="#{notasksleft}"></p>
 </div>
 </body>
 </html>

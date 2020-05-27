@@ -7,12 +7,19 @@
 
 </head>
 <body>
-<header th:fragment="header(title)">
-    <h1><span th:text="${title}"></span></h1>
+<header th:fragment="header(page_title)">
+    <div id="language">
+        <h3 th:text="#{Choose_language}"></h3>
+        <ul>
+            <li><a href="?lang=en" th:text="#{lang.en}"></a></li>
+            <li><a href="?lang=nl" th:text="#{lang.nl}"></a></li>
+        </ul>
+    </div>
+    <h1 th:text="${page_title}"></h1>
     <nav>
         <ul>
-            <li><a href="/tasks">View all Tasks</a></li>
-            <li><a href="/tasks/new">Add Task</a></li>
+            <li><a href="/tasks" th:text="#{view_all_tasks}"></a></li>
+            <li><a href="/tasks/new" th:text="#{add_task}"></a></li>
         </ul>
     </nav>
 </header>

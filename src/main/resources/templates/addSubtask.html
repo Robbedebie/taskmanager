@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="_fragments.html :: head('Add Subtask')"></head>
+<head th:insert="_fragments.html :: head(#{add_subtask})"></head>
 <body>
-<header th:replace="_fragments.html :: header('Add Subtask') "></header>
+<header th:replace="_fragments.html :: header(#{add_subtask}) "></header>
+
 <form action="/tasks/addSubtask" method="post" th:object="${subtask}" novalidate>
     <h2>Add Subtask to <span th:text="${task.title}"></span></h2>
     <div class="formcontainer">
         <div class="container">
-            <label for="title"><strong>Title</strong></label>
+            <label for="title"><strong th:text="#{Title}"></strong></label>
             <p th:errors="*{title}"></p>
             <input type="text" th:field="*{title}" name="title" id="title" required>
 
-            <label for="description"><strong>Description</strong></label>
+            <label for="description"><strong th:text="#{Description}"></strong></label>
             <p th:errors="*{description}"></p>
             <input type="text" th:field="*{description}" id="description" name="description" required>
             <input type="hidden" th:value="${task.uuid}" name="idMainTask">
-
         </div>
-        <button type="submit">Add subtask</button>
+        <button type="submit" th:text="#{add_subtask}"></button>
     </div>
 </form>
 </body>

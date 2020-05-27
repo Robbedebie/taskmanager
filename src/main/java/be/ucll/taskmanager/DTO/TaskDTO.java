@@ -36,7 +36,7 @@ public class TaskDTO {
     }
 
     public String getDateString() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMMM dd yyyy 'at' HH:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMMM dd yyyy ':' HH:mm");
         return dateTimeFormatter.format(date);
     }
 
