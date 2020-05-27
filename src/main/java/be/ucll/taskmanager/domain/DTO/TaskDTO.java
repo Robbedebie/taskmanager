@@ -1,10 +1,7 @@
-package be.ucll.taskmanager.DTO;
+package be.ucll.taskmanager.domain.DTO;
 
-import be.ucll.taskmanager.service.Subtask;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;

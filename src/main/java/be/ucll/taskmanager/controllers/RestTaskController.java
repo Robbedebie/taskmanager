@@ -1,14 +1,8 @@
 package be.ucll.taskmanager.controllers;
 
-import be.ucll.taskmanager.DTO.SubtaskDTO;
-import be.ucll.taskmanager.DTO.TaskDTO;
-import be.ucll.taskmanager.service.Subtask;
-import be.ucll.taskmanager.service.Task;
-import be.ucll.taskmanager.service.TaskServiceImp;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import be.ucll.taskmanager.domain.DTO.SubtaskDTO;
+import be.ucll.taskmanager.domain.DTO.TaskDTO;
+import be.ucll.taskmanager.domain.service.TaskServiceImp;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

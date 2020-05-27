@@ -1,9 +1,9 @@
-package be.ucll.taskmanager.service;
+package be.ucll.taskmanager.domain.service;
 
-import be.ucll.taskmanager.DTO.SubtaskDTO;
-import be.ucll.taskmanager.DTO.TaskDTO;
-import be.ucll.taskmanager.db.SubtaskRepository;
-import be.ucll.taskmanager.db.TaskRepository;
+import be.ucll.taskmanager.domain.DTO.SubtaskDTO;
+import be.ucll.taskmanager.domain.DTO.TaskDTO;
+import be.ucll.taskmanager.domain.db.SubtaskRepository;
+import be.ucll.taskmanager.domain.db.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class TaskServiceImp implements TaskService{
         if(repository.findById(id).isPresent()){
             return repository.findById(id).get();
         }
-        else {throw new ServiceException("Ding dong UUID is wrong. Or Arne can't find your task...");}
+        else {throw new ServiceException("Task not found, or UUID is wrong");}
     }
 
     @Override
@@ -61,8 +61,6 @@ public class TaskServiceImp implements TaskService{
             Task task = repository.findById(dto.getUuid()).get();
             task.editTaskParametersUsingTaskDTO(dto);
             repository.save(task);
-
-
             TaskDTO taskDTO = new TaskDTO();
             taskDTO.setDescription(task.getDescription());
             taskDTO.setTitle(task.getTitle());

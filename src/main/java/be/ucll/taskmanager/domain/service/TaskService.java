@@ -1,7 +1,6 @@
-package be.ucll.taskmanager.service;
+package be.ucll.taskmanager.domain.service;
 
-import be.ucll.taskmanager.DTO.SubtaskDTO;
-import be.ucll.taskmanager.DTO.TaskDTO;
+import be.ucll.taskmanager.domain.DTO.TaskDTO;
 
 import java.util.List;
 import java.util.UUID;
