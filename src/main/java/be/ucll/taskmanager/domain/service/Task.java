@@ -1,18 +1,15 @@
-package be.ucll.taskmanager.service;
+package be.ucll.taskmanager.domain.service;
 
-import be.ucll.taskmanager.DTO.SubtaskDTO;
-import be.ucll.taskmanager.DTO.TaskDTO;
+import be.ucll.taskmanager.domain.DTO.SubtaskDTO;
+import be.ucll.taskmanager.domain.DTO.TaskDTO;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,13 +37,12 @@ public class Task {
         if(subtasks == null){
             this.subtasks = new ArrayList<>();
         }
-
     }
     public Task(UUID id, String description, LocalDateTime date,String title){
-      this.description = description;
-      this.date = date;
-      this.title= title;
-      this.uuid = id;
+        setDate(date);
+        setDescription(description);
+        setTitle(title);
+        this.uuid = id;
         if(subtasks == null){
             this.subtasks = new ArrayList<>();
         }
@@ -55,16 +51,10 @@ public class Task {
     }
 
     public Task(String description, LocalDateTime date, String title) {
-        if (description == null || description.trim().isEmpty()) {
-            throw new ServiceException("Description mag niet leeg zijn");
-        }
-        if (date == null) {
-            throw new ServiceException("date is null");
-        }
+        setDescription(description);
+        setDate(date);
+        setTitle(title);
         this.uuid = UUID.randomUUID();
-        this.description = description;
-        this.date = date;
-        this.title = title;
         if(subtasks == null){
             this.subtasks = new ArrayList<>();
         }
@@ -93,14 +83,23 @@ public class Task {
     }
 
     public void setDescription(String description) {
+        if(description == null || description.trim().isEmpty()){
+            throw new ServiceException("Description mag niet leeg zijn");
+        }
         this.description = description;
     }
 
     public void setDate(LocalDateTime date) {
+        if(date == null){
+            throw new ServiceException("Date can't be null");
+        }
         this.date = date;
     }
 
     public void setTitle(String title){
+        if(title == null || title.trim().isEmpty()){
+            throw new ServiceException("Description mag niet leeg zijn");
+        }
         this.title = title;
     }
 

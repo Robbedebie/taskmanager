@@ -1,10 +1,9 @@
-package be.ucll.taskmanager.service;
+package be.ucll.taskmanager.domain.service;
 
-import be.ucll.taskmanager.DTO.SubtaskDTO;
-import be.ucll.taskmanager.DTO.TaskDTO;
-import be.ucll.taskmanager.db.DbInterface;
-import be.ucll.taskmanager.db.SubtaskRepository;
-import be.ucll.taskmanager.db.TaskRepository;
+import be.ucll.taskmanager.domain.DTO.SubtaskDTO;
+import be.ucll.taskmanager.domain.DTO.TaskDTO;
+import be.ucll.taskmanager.domain.db.SubtaskRepository;
+import be.ucll.taskmanager.domain.db.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImp implements TaskService{
@@ -25,18 +23,19 @@ public class TaskServiceImp implements TaskService{
         this.subtaskRepository = subtaskRepository;
     }
     @Override
-    public void addTask(TaskDTO taskDTO) {
+    public TaskDTO addTask(TaskDTO taskDTO) {
         String title = taskDTO.getTitle();
         String description = taskDTO.getDescription();
         LocalDateTime date = taskDTO.getDate();
         Task task = new Task(description, date, title);
         repository.save(task);
+        return taskDTO;
     }
     private Task getTask(UUID id){
         if(repository.findById(id).isPresent()){
             return repository.findById(id).get();
         }
-        else {throw new ServiceException("Ding dong UUID is wrong. Or Arne can't find your task...");}
+        else {throw new ServiceException("Task not found, or UUID is wrong");}
     }
 
     @Override
@@ -57,17 +56,23 @@ public class TaskServiceImp implements TaskService{
     }
 
     @Override
-    public void editTask(TaskDTO dto) {
+    public TaskDTO editTask(TaskDTO dto) {
         if(repository.findById(dto.getUuid()).isPresent()) {
             Task task = repository.findById(dto.getUuid()).get();
             task.editTaskParametersUsingTaskDTO(dto);
             repository.save(task);
+            TaskDTO taskDTO = new TaskDTO();
+            taskDTO.setDescription(task.getDescription());
+            taskDTO.setTitle(task.getTitle());
+            taskDTO.setDate(task.getdate());
+            taskDTO.setUuid(task.getUuid());
+            taskDTO.setSubtasks(task.getsubtasksDTO());
+            return taskDTO;
         }
         else {throw new IllegalArgumentException("Ding dong UUID is wrong");}
-    }
 
-    @Override
-    public void addSubtask(UUID uuid, SubtaskDTO subtaskDTO) {
+    }
+    public SubtaskDTO addSubtask(UUID uuid, SubtaskDTO subtaskDTO) {
         Subtask subtask = new Subtask();
         subtask.setDescription(subtaskDTO.getDescription());
         subtask.setTitle(subtaskDTO.getTitle());
@@ -77,6 +82,7 @@ public class TaskServiceImp implements TaskService{
         Task task = getTask(uuid);
         task.addSubtask(subtask);
         repository.save(task);
+        return subtaskDTO;
     }
     public List<TaskDTO> getAllTasks(){
         List<TaskDTO> dtos = new ArrayList<>();

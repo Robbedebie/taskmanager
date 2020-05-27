@@ -1,6 +1,4 @@
-package be.ucll.taskmanager.service;
-
-import java.security.Provider;
+package be.ucll.taskmanager.domain.service;
 
 public class ServiceException extends RuntimeException {
     public ServiceException(String message, Exception e){

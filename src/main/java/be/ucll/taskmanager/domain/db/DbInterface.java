@@ -1,7 +1,7 @@
-package be.ucll.taskmanager.db;
+package be.ucll.taskmanager.domain.db;
 
-import be.ucll.taskmanager.service.Subtask;
-import be.ucll.taskmanager.service.Task;
+import be.ucll.taskmanager.domain.service.Subtask;
+import be.ucll.taskmanager.domain.service.Task;
 
 import java.time.LocalDateTime;
 import java.util.List;

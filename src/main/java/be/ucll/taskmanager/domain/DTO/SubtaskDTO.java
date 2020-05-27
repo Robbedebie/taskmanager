@@ -1,4 +1,4 @@
-package be.ucll.taskmanager.DTO;
+package be.ucll.taskmanager.domain.DTO;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

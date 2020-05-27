@@ -1,8 +1,7 @@
-package be.ucll.taskmanager.db;
+package be.ucll.taskmanager.domain.db;
 
-import be.ucll.taskmanager.service.Task;
+import be.ucll.taskmanager.domain.service.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.UUID;
 

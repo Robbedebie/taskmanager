@@ -1,10 +1,7 @@
-package be.ucll.taskmanager.DTO;
+package be.ucll.taskmanager.domain.DTO;
 
-import be.ucll.taskmanager.service.Subtask;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -36,7 +33,7 @@ public class TaskDTO {
     }
 
     public String getDateString() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMMM dd yyyy 'at' HH:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMMM dd yyyy ':' HH:mm");
         return dateTimeFormatter.format(date);
     }
 

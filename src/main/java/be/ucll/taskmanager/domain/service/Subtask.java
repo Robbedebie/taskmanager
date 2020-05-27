@@ -1,4 +1,4 @@
-package be.ucll.taskmanager.service;
+package be.ucll.taskmanager.domain.service;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
