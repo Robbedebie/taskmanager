@@ -4,7 +4,7 @@
 <body>
 <header th:replace="_fragments.html :: header(#{page_title_edit_task})"></header>
 
-<form action="/tasks/editTask" method="post" th:object="${task}" novalidate>
+<form action="/tasks/editTask" method="post" th:object="${taskDTO}" novalidate>
     <div class="formcontainer">
         <hr/>
         <div class="container">

@@ -4,7 +4,7 @@
 <body>
 <header th:replace="_fragments.html :: header(#{add_subtask}) "></header>
 
-<form action="/tasks/addSubtask" method="post" th:object="${subtask}" novalidate>
+<form action="/tasks/addSubtask" method="post" th:object="${subtaskDTO}" novalidate>
     <h2>Add Subtask to <span th:text="${task.title}"></span></h2>
     <div class="formcontainer">
         <div class="container">

@@ -3,7 +3,7 @@
 <head th:insert="_fragments.html :: head(#{add_task})"></head>
 <body>
 <header th:replace="_fragments.html :: header(#{page_title_add_task}) "></header>
-<form action="/tasks/addTask" method="post" th:object="${task}" novalidate>
+<form action="/tasks/addTask" method="post" th:object="${taskDTO}" novalidate>
     <div class="formcontainer">
         <div class="container">
             <label for="title"><strong th:text="#{Title}"></strong></label>
