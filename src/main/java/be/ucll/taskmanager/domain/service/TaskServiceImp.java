@@ -31,6 +31,7 @@ public class TaskServiceImp implements TaskService{
         repository.save(task);
         return taskDTO;
     }
+
     private Task getTask(UUID id){
         if(repository.findById(id).isPresent()){
             return repository.findById(id).get();
@@ -96,5 +97,9 @@ public class TaskServiceImp implements TaskService{
             dtos.add(dto);
         }
         return dtos;
+    }
+    //this method is for testing purposes
+    public void saveTaskToRepo(Task task){
+        repository.save(task);
     }
 }

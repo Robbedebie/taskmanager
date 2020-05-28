@@ -32,12 +32,13 @@ public class TaskController {
     }
     @GetMapping("/new")
     public String addTaskPage(Model model){
-        model.addAttribute("task", new TaskDTO());
+        model.addAttribute("taskDTO", new TaskDTO());
         return "addTask";
     }
     @PostMapping("/addTask")
     public String addTask(Model model, @ModelAttribute @Valid TaskDTO taskDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
+            System.out.println(bindingResult);
             return "addTask";
         }
         service.addTask(taskDTO);
@@ -47,7 +48,7 @@ public class TaskController {
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") String id){
         TaskDTO taskDTO = service.getTaskDTO(UUID.fromString(id));
-        model.addAttribute("task", taskDTO);
+        model.addAttribute("taskDTO", taskDTO);
         return "editTask";
     }
     //Method to be executed when you submit the edited task
@@ -68,15 +69,15 @@ public class TaskController {
         return "addSubtask";
     }
     @PostMapping("/addSubtask")
-    public String addSubtask(Model model, @RequestParam(value="idMainTask") String id, @ModelAttribute @Valid SubtaskDTO subtask, BindingResult bindingResult){
+    public String addSubtask(Model model, @RequestParam(value="idMainTask") String id, @ModelAttribute @Valid SubtaskDTO subtaskDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            model.addAttribute("subtask", subtask);
+            model.addAttribute("subtaskDTO", subtaskDTO);
             TaskDTO mainTask = service.getTaskDTO(UUID.fromString(id));
             model.addAttribute("task", mainTask);
             return "addSubtask";
         }
         UUID uuid = UUID.fromString(id);
-        service.addSubtask(uuid, subtask);
+        service.addSubtask(uuid, subtaskDTO);
         return "redirect:/tasks/" + id;
     }
 }

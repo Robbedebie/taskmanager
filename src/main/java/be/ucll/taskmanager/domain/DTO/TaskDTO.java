@@ -1,8 +1,12 @@
 package be.ucll.taskmanager.domain.DTO;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,6 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class TaskDTO {
+
     private UUID uuid;
     @NotEmpty
     @Size(min=3, max = 50)
@@ -18,6 +23,7 @@ public class TaskDTO {
     @NotEmpty
     private String title;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @NotNull
     private LocalDateTime date;
     private List<SubtaskDTO> subtasks;
 
