@@ -5,7 +5,6 @@ import be.ucll.taskmanager.domain.service.Subtask;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import javax.transaction.Transactional;
 
